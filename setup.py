@@ -3,7 +3,7 @@ import setuptools
 setuptools.setup(
     name="extension_rvc",
     packages=setuptools.find_namespace_packages(),
-    version="0.0.2",
+    version="0.0.3",
     author="rsxdalv",
     description="RVC: Retrieval-based Voice Conversion",
     url="https://github.com/rsxdalv/extension_rvc",

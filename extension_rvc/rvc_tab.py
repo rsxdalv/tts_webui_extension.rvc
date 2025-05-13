@@ -1,3 +1,4 @@
+import functools
 import os
 import gradio as gr
 import glob
@@ -13,15 +14,7 @@ from extension_rvc.get_and_load_hubert import download_rmvpe
 from tts_webui.utils.randomize_seed import randomize_seed_ui
 from tts_webui.utils.manage_model_state import manage_model_state
 from tts_webui.utils.list_dir_models import unload_model_button
-from tts_webui.decorators.gradio_dict_decorator import dictionarize
-from tts_webui.decorators.decorator_apply_torch_seed import decorator_apply_torch_seed
-from tts_webui.decorators.decorator_log_generation import decorator_log_generation
-from tts_webui.decorators.decorator_save_metadata import decorator_save_metadata
-from tts_webui.decorators.decorator_save_wav import decorator_save_wav
-from tts_webui.decorators.decorator_add_base_filename import decorator_add_base_filename
-from tts_webui.decorators.decorator_add_date import decorator_add_date
-from tts_webui.decorators.decorator_add_model_type import decorator_add_model_type
-from tts_webui.decorators.log_function_time import log_function_time
+from tts_webui.decorators import *
 from tts_webui.extensions_loader.decorator_extensions import (
     decorator_extension_outer,
     decorator_extension_inner,
@@ -60,18 +53,6 @@ def decorator_rvc_use_model_name_as_text(fn):
     return wrapper
 
 
-# add f0_file
-@decorator_extension_outer
-@decorator_rvc_use_model_name_as_text
-@decorator_apply_torch_seed
-@decorator_save_metadata
-@decorator_save_wav
-@decorator_add_model_type("rvc")
-@decorator_add_base_filename
-@decorator_add_date
-@decorator_log_generation
-@decorator_extension_inner
-@log_function_time
 def run_rvc(
     pitch_up_key: str,
     original_audio_path: str,
@@ -104,6 +85,23 @@ def run_rvc(
         # hubert_path="data/models/hubert/hubert_base.pt",
     )
     return {"audio_out": (tgt_sr, audio_opt)}
+
+
+# add f0_file
+@functools.wraps(run_rvc)
+@decorator_extension_outer
+@decorator_rvc_use_model_name_as_text
+@decorator_apply_torch_seed
+@decorator_save_metadata
+@decorator_save_wav
+@decorator_add_model_type("rvc")
+@decorator_add_base_filename
+@decorator_add_date
+@decorator_log_generation
+@decorator_extension_inner
+@log_function_time
+def run_rvc_decorated(**kwargs):
+    return run_rvc(**kwargs)
 
 
 RVC_LOCAL_MODELS_DIR = get_path_from_root("data", "models", "rvc", "checkpoints")
@@ -246,7 +244,7 @@ def rvc_ui():
 
     button.click(
         **dictionarize(
-            fn=run_rvc,
+            fn=run_rvc_decorated,
             inputs=inputs_dict,
             outputs=outputs_dict,
         ),

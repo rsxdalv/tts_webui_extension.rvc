@@ -1,5 +1,5 @@
 import gradio as gr
-from extension_rvc.rvc_tab import rvc_ui
+from .rvc_tab import rvc_ui
 
 
 def extension__tts_generation_webui():
