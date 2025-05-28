@@ -7,7 +7,6 @@ def extension__tts_generation_webui():
     return {
         "package_name": "extension_rvc",
         "name": "RVC",
-        "version": "0.0.2",
         "requirements": "git+https://github.com/rsxdalv/extension_rvc@main",
         "description": "RVC: Retrieval-based Voice Conversion",
         "extension_type": "interface",
