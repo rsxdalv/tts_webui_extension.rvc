@@ -1,12 +1,12 @@
 import setuptools
 
 setuptools.setup(
-    name="extension_rvc",
+    name="tts_webui_extension.rvc",
     packages=setuptools.find_namespace_packages(),
     version="0.0.3",
     author="rsxdalv",
     description="RVC: Retrieval-based Voice Conversion",
-    url="https://github.com/rsxdalv/extension_rvc",
+    url="https://github.com/rsxdalv/tts_webui_extension.rvc",
     project_urls={},
     scripts=[],
     install_requires=[
@@ -19,3 +19,4 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
 )
+

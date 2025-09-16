@@ -98,7 +98,7 @@ def uvr5_tab():
 
 if __name__ == "__main__":
     with gr.Blocks(
-        title="TTS Generation WebUI (Bark, MusicGen + AudioGen, Tortoise, RVC)",
+        title="TTS WebUI (Bark, MusicGen + AudioGen, Tortoise, RVC)",
     ) as demo:
         uvr5_tab()
         demo.launch(

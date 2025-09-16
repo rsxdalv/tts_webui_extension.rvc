@@ -3,11 +3,12 @@ import os
 import gradio as gr
 import glob
 from pathlib import Path
+from gradio_iconbutton import IconButton
 from huggingface_hub import hf_hub_download
 
 from tts_webui.utils.open_folder import open_folder
 from tts_webui.utils.get_path_from_root import get_path_from_root
-from tts_webui.utils.gr_reload_button import gr_reload_button, gr_open_button_simple
+from tts_webui.utils.OpenFolderButton import OpenFolderButton
 
 from extension_rvc.get_and_load_hubert import download_rmvpe
 
@@ -145,10 +146,8 @@ def rvc_ui_model_or_index_path_ui(label: str):
                 show_label=False,
                 container=False,
             )
-            gr_open_button_simple(
-                RVC_LOCAL_MODELS_DIR, api_name=f"rvc_{label.lower()}_open"
-            )
-            gr_reload_button().click(
+            OpenFolderButton(RVC_LOCAL_MODELS_DIR, api_name=f"rvc_{label.lower()}_open")
+            IconButton("refresh").click(
                 fn=lambda: gr.Dropdown(choices=get_list_fn()),
                 outputs=[file_path_dropdown],
                 api_name=f"rvc_{label.lower()}_reload",
@@ -221,7 +220,7 @@ def rvc_ui():
             open_folder_button = gr.Button(
                 value="Open outputs folder", variant="secondary"
             )
-            open_folder_button.click(lambda: open_folder("outputs-rvc"))
+            open_folder_button.click(lambda: open_folder("outputs"))
 
     inputs_dict = {
         pitch_up_key: "pitch_up_key",
