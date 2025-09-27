@@ -1,7 +1,7 @@
 # import os
 # import sys
 # from dotenv import load_dotenv
-# from extension_rvc.hide_argv import hide_argv
+# from .hide_argv import hide_argv
 
 # os.environ.setdefault("weight_root", "data/models/rvc/checkpoints")
 # os.environ.setdefault("weight_uvr5_root", "data/models/rvc/uvr5_weights")
@@ -19,7 +19,7 @@
 
 # sys.path.remove(rvc_dir)
 
-# from extension_rvc.get_and_load_hubert import get_and_load_hubert_new, download_rmvpe
+# from .get_and_load_hubert import get_and_load_hubert_new, download_rmvpe
 
 
 # last_model_path = None

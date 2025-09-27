@@ -3,9 +3,9 @@ import os
 # import sys
 import gradio as gr
 from tts_webui.utils.open_folder import open_folder
-from extension_rvc.download_uvr5 import download_uvr5
+from .download_uvr5 import download_uvr5
 
-# from extension_rvc.hide_argv import hide_argv
+# from .hide_argv import hide_argv
 
 # import rvc_pkg
 

@@ -3,7 +3,7 @@ import setuptools
 setuptools.setup(
     name="tts_webui_extension.rvc",
     packages=setuptools.find_namespace_packages(),
-    version="0.0.4",
+    version="0.0.5",
     author="rsxdalv",
     description="RVC: Retrieval-based Voice Conversion",
     url="https://github.com/rsxdalv/tts_webui_extension.rvc",

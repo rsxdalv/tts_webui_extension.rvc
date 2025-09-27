@@ -10,7 +10,7 @@ from tts_webui.utils.open_folder import open_folder
 from tts_webui.utils.get_path_from_root import get_path_from_root
 from tts_webui.utils.OpenFolderButton import OpenFolderButton
 
-from extension_rvc.get_and_load_hubert import download_rmvpe
+from .get_and_load_hubert import download_rmvpe
 
 from tts_webui.utils.randomize_seed import randomize_seed_ui
 from tts_webui.utils.manage_model_state import manage_model_state
